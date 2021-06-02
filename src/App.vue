@@ -11,6 +11,11 @@
           />
         </a-col>
       </a-row>
+      <a-row v-bind:gutter="[16, 16]">
+        <a-col v-bind:span="24">
+          <GraphCard v-bind:data="data" />
+        </a-col>
+      </a-row>
     </a-layout-content>
   </a-layout>
 </template>
@@ -18,12 +23,14 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import RealtimeCard from "./components/RealtimeCard.vue";
+import GraphCard from "./components/GraphCard.vue";
 
 import YZX, { IYZXMessage } from "./YZX";
 
 @Component({
   components: {
     RealtimeCard,
+    GraphCard,
   },
 })
 export default class App extends Vue {
