@@ -9,13 +9,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@serialport/stream": "^9.0.7",
     "core-js": "^3.6.5",
+    "serialport-binding-webserialapi": "^1.0.3",
     "vue": "^2.6.11",
     "vue-class-component": "^7.2.6",
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
     "@types/node": "^15.6.0",
+    "@types/serialport": "^8.0.1",
     "@typescript-eslint/eslint-plugin": "^4.23.0",
     "@typescript-eslint/parser": "^4.23.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -43,7 +46,8 @@
       "ecmaVersion": 2020
     },
     "rules": {
-      "no-unused-vars": "warn"
+      "no-unused-vars": "warn",
+      "@typescript-eslint/ban-ts-comment": "off"
     }
   },
   "browserslist": [
