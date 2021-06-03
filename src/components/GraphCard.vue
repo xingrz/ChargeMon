@@ -39,25 +39,25 @@ export default class GraphCard extends Vue {
       dataKey: "t",
       min: 0,
       max: (60 * 1000) / 10,
-      formatter: (t: number) =>
+      formatter: (t: number): string =>
         Duration.fromMillis(t * 10).toFormat("hh:mm:ss.SSS"),
     },
     {
       type: "linear",
       dataKey: "v",
       min: 0,
-      formatter: (v: number) => v.toFixed(4),
+      formatter: (v: number): string => v.toFixed(4),
     },
     {
       type: "linear",
       dataKey: "a",
       min: 0,
-      formatter: (a: number) => a.toFixed(4),
+      formatter: (a: number): string => a.toFixed(4),
     },
   ];
 
   @Watch("data")
-  onNewData(data?: IYZXMessage | null) {
+  onNewData(data?: IYZXMessage | null): void {
     if (data) {
       if (this.samples[0]) {
         data.t = data.t - this.startTime;

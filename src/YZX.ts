@@ -15,12 +15,7 @@ export interface IYZXMessage {
   dp: number;
 }
 
-export interface IYZX extends EventEmitter {
-  close(): Promise<void>;
-  on(event: 'data', listener: (data: IYZXMessage) => void): this;
-}
-
-export default class YZX extends EventEmitter implements IYZX {
+export default class YZX extends EventEmitter {
 
   serial: SerialPort | null = null;
 
