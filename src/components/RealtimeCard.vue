@@ -1,14 +1,21 @@
 <template>
   <a-card v-bind:bordered="false">
     <a-row v-bind:gutter="[16, 16]" type="flex" align="middle">
-      <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="2">
-        <a-switch
-          v-bind:checked="state == 'opened'"
+      <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
+        <a-button
+          v-if="state == 'opened'"
+          v-on:click="() => this.$emit('close')"
+          >关闭设备</a-button
+        >
+        <a-button
+          v-else
           v-bind:loading="state == 'opening'"
-          v-on:change="toggle"
-        />
+          v-on:click="() => this.$emit('open')"
+          type="primary"
+          >连接设备</a-button
+        >
       </a-col>
-      <a-col v-bind:xs="24" v-bind:md="22">
+      <a-col v-bind:xs="24" v-bind:md="21">
         <a-row v-bind:gutter="[16, 16]" type="flex" align="middle">
           <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
@@ -80,13 +87,5 @@ import { IYZXMessage } from "../YZX";
 export default class RealtimeCard extends Vue {
   @Prop() data?: IYZXMessage | null;
   @Prop() state?: "closed" | "opening" | "opened";
-
-  toggle(checked: boolean): void {
-    if (checked) {
-      this.$emit("open");
-    } else {
-      this.$emit("close");
-    }
-  }
 }
 </script>
