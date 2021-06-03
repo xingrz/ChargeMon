@@ -17,6 +17,13 @@
       </a-col>
       <a-col v-bind:xs="24" v-bind:md="21">
         <a-row v-bind:gutter="[16, 16]" type="flex" align="middle">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+            <a-statistic
+              title="计时"
+              v-bind:value="(data || {}).t"
+              v-bind:formatter="formatTime"
+            />
+          </a-col>
           <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <MilliData
               title="电压"
@@ -62,7 +69,7 @@
               v-bind:precision="4"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="2">
             <MilliData
               title="D+"
               suffix="V"
@@ -71,7 +78,7 @@
               v-bind:precision="3"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="2">
             <MilliData
               title="D-"
               suffix="V"
@@ -88,6 +95,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+import { Duration } from "luxon";
 import { IYZXMessage } from "../YZX";
 
 import MilliData from "./MilliData.vue";
@@ -103,6 +111,10 @@ export default class RealtimeCard extends Vue {
 
   get w(): number {
     return this.data ? this.data.a * this.data.v : 0;
+  }
+
+  formatTime({ value }: { value: number }): string {
+    return Duration.fromMillis(value * 10).toFormat("hh:mm:ss.SSS");
   }
 }
 </script>

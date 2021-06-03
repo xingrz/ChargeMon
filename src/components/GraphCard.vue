@@ -30,7 +30,6 @@ interface ISample extends IYZXMessage {
 export default class GraphCard extends Vue {
   @Prop() data?: IYZXMessage | null;
 
-  startTime = 0;
   samples: ISample[] = [];
 
   scale: ITimeScale[] | ILinearScale[] = [
@@ -59,11 +58,14 @@ export default class GraphCard extends Vue {
   @Watch("data")
   onNewData(data?: IYZXMessage | null): void {
     if (data) {
-      if (this.samples[0]) {
-        data.t = data.t - this.startTime;
-      } else {
-        this.startTime = data.t;
-        data.t = 0;
+      if (this.samples.length == 0) {
+        const scale = this.scale;
+        scale[0] = {
+          ...scale[0],
+          min: data.t,
+          max: data.t + (60 * 1000) / 10,
+        };
+        this.scale = scale;
       }
 
       this.samples.push({
