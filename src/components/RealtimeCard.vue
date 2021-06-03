@@ -47,7 +47,7 @@
               title="功率"
               suffix="W"
               suffixMilli="mW"
-              v-bind:value="(data || {}).w"
+              v-bind:value="w"
               v-bind:precision="4"
             />
           </a-col>
