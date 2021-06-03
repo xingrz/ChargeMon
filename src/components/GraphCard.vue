@@ -44,14 +44,16 @@ export default class GraphCard extends Vue {
     {
       type: "linear",
       dataKey: "v",
+      alias: "电压",
       min: 0,
-      formatter: (v: number): string => v.toFixed(4),
+      formatter: (v: number): string => `${v.toFixed(4)} V`,
     },
     {
       type: "linear",
       dataKey: "a",
+      alias: "电流",
       min: 0,
-      formatter: (a: number): string => a.toFixed(4),
+      formatter: (a: number): string => `${a.toFixed(4)} A`,
     },
   ];
 
