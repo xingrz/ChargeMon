@@ -17,6 +17,13 @@
         </a-col>
       </a-row>
     </a-layout-content>
+
+    <a-layout-footer class="footer">
+      <div>© 2021 XiNGRZ</div>
+      <div>
+        <a href="https://github.com/xingrz/ChargeMon">Fork me on GitHub</a>
+      </div>
+    </a-layout-footer>
   </a-layout>
 </template>
 
