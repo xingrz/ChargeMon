@@ -13,6 +13,7 @@
     "@serialport/stream": "^9.0.7",
     "ant-design-vue": "^1.7.5",
     "core-js": "^3.6.5",
+    "luxon": "^1.27.0",
     "serialport-binding-webserialapi": "^1.0.3",
     "viser": "^2.4.9",
     "viser-vue": "^2.4.8",
@@ -21,6 +22,7 @@
     "vue-property-decorator": "^9.1.2"
   },
   "devDependencies": {
+    "@types/luxon": "^1.26.5",
     "@types/node": "^15.6.0",
     "@types/serialport": "^8.0.1",
     "@typescript-eslint/eslint-plugin": "^4.23.0",

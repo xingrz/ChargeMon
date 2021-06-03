@@ -10,7 +10,7 @@
       </a-col>
       <a-col v-bind:xs="24" v-bind:md="22">
         <a-row v-bind:gutter="[16, 16]" type="flex" align="middle">
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
               title="电压"
               v-bind:value="data ? data.v : 0"
@@ -18,7 +18,7 @@
               v-bind:precision="4"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
               title="电流"
               v-bind:value="data ? data.a : 0"
@@ -26,7 +26,15 @@
               v-bind:precision="4"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
+            <a-statistic
+              title="功率"
+              v-bind:value="data ? data.a * data.v : 0"
+              suffix="W"
+              v-bind:precision="4"
+            />
+          </a-col>
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
               title="容量"
               v-bind:value="data ? data.ah : 0"
@@ -34,7 +42,7 @@
               v-bind:precision="4"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
               title="能量"
               v-bind:value="data ? data.wh : 0"
@@ -42,7 +50,7 @@
               v-bind:precision="4"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
               title="D+"
               v-bind:value="data ? data.dp : 0"
@@ -50,7 +58,7 @@
               v-bind:precision="3"
             />
           </a-col>
-          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="4">
+          <a-col v-bind:xs="12" v-bind:sm="8" v-bind:lg="3">
             <a-statistic
               title="D-"
               v-bind:value="data ? data.dn : 0"
