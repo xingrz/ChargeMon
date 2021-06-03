@@ -11,6 +11,7 @@
       <v-axis dataKey="t" />
       <v-line position="t*v" color="darkcyan" />
       <v-line position="t*a" color="orange" />
+      <v-line position="t*ah" color="red" />
     </v-chart>
   </a-card>
 </template>
@@ -54,6 +55,12 @@ export default class GraphCard extends Vue {
       alias: "电流",
       min: 0,
       formatter: (a: number): string => `${a.toFixed(4)} A`,
+    },
+    {
+      type: "linear",
+      dataKey: "ah",
+      alias: "容量",
+      formatter: (ah: number): string => `${(ah * 1000).toFixed(1)} mAh`,
     },
   ];
 
