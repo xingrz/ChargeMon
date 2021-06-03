@@ -8,10 +8,11 @@
       padding="auto"
     >
       <v-tooltip />
-      <v-axis dataKey="t" />
+      <v-axis dataKey="ah" v-bind:show="false" />
       <v-line position="t*v" color="darkcyan" />
       <v-line position="t*a" color="orange" />
       <v-line position="t*ah" color="red" />
+      <v-legend />
     </v-chart>
   </a-card>
 </template>
