@@ -37,6 +37,9 @@ export default class YZX extends EventEmitter {
     try {
       await once(this.serial, 'open');
     } catch (e) {
+      if (this.serial && this.serial.isOpen) {
+        this.serial.close();
+      }
       this.serial = null;
       throw e;
     }
