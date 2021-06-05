@@ -38,8 +38,8 @@ export default class YZX extends EventEmitter {
     try {
       await once(this.serial, 'open');
     } catch (e) {
-      if (this.serial && this.serial.isOpen) {
-        this.serial.close();
+      if (this.serial) {
+        this.serial.close(() => null);
       }
       this.serial = null;
       throw e;
@@ -48,7 +48,7 @@ export default class YZX extends EventEmitter {
 
   async close(): Promise<void> {
     if (this.serial) {
-      this.serial.close();
+      this.serial.close(() => null);
       await once(this.serial, 'close');
     }
   }
