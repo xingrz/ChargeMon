@@ -18,6 +18,7 @@ export interface IYZXMessage {
 export default class YZX extends EventEmitter {
 
   serial: SerialPort | null = null;
+  buffer = Buffer.alloc(0);
 
   static async open(path: string): Promise<YZX> {
     const instance = new YZX();
@@ -53,26 +54,33 @@ export default class YZX extends EventEmitter {
   }
 
   private handleData(data: Buffer): void {
-    if (data.length != 28) return;
-    if (data[0] != 0xAB) return;
+    this.buffer = Buffer.concat([this.buffer, data]);
+
+    if (this.buffer.length < 28) return;
+    while (this.buffer[0] != 0xAB) {
+      this.buffer = this.buffer.slice(1);
+      if (this.buffer.length < 28) return;
+    }
 
     let chk = 0;
     for (let i = 0; i < 27; i++) {
-      chk = (chk + data[i]) & 0xFF;
-    }
-    if (chk != data[27]) return;
-
-    const msg: IYZXMessage = {
-      v: data.readInt32LE(3) / 10000,
-      a: data.readInt32LE(7) / 10000,
-      ah: data.readUInt32LE(11) / 10000,
-      wh: data.readUInt32LE(15) / 10000,
-      t: data.readUInt32LE(19),
-      dn: data.readUInt16LE(23) / 1000,
-      dp: data.readUInt16LE(25) / 1000,
+      chk = (chk + this.buffer[i]) & 0xFF;
     }
 
-    this.emit('data', msg);
+    if (chk == this.buffer[27]) {
+      const msg: IYZXMessage = {
+        v: this.buffer.readInt32LE(3) / 10000,
+        a: this.buffer.readInt32LE(7) / 10000,
+        ah: this.buffer.readUInt32LE(11) / 10000,
+        wh: this.buffer.readUInt32LE(15) / 10000,
+        t: this.buffer.readUInt32LE(19),
+        dn: this.buffer.readUInt16LE(23) / 1000,
+        dp: this.buffer.readUInt16LE(25) / 1000,
+      }
+      this.emit('data', msg);
+    }
+
+    this.buffer = this.buffer.slice(28);
   }
 
 }
