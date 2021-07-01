@@ -1,4 +1,4 @@
-[ChargeMon](https://charge.xingrz.me) [![Auto deploy](https://github.com/xingrz/ChargeMon/actions/workflows/deploy.yml/badge.svg)](https://github.com/xingrz/ChargeMon/actions/workflows/deploy.yml)
+[ChargeMon](https://charge.xingrz.me)
 ==========
 
 [![license][license-img]][license-url] [![issues][issues-img]][issues-url] [![commits][commits-img]][commits-url]
